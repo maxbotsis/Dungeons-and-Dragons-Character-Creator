@@ -2,13 +2,10 @@
 Created on Tuesday April 30 2019
 
 @author: terreratman
+@co-author: minispuks
 """
 
 # =============================================================================
-# I made this because my group has their noses in the books 24/7 and I want things to go a bit quicker. I'm hoping some random characters will allow them to focus on familiarizing themselves with the game rules by pushing them through different situations
-# The code contains every race allowed in the Adventurer's League as well as some extras, every published class and background (I listed some extra classes, but have not finished their code until I test their balance)
-# None of my code is very elegant as I have just learned python in the past two weeks.
-# Please feel free to leave critisisms and suggestions, it will help me learn. :)
 #
 # Known Gaps in the character creator:
 #
@@ -22,6 +19,11 @@ Created on Tuesday April 30 2019
 
 import random
 import collections
+
+#Main Class
+
+#Base class
+class 
 
 def Normal(Min, Max): # Not exactly sure how this one is working, but it gives a more realistic result for age, height and weight
     r = round(random.triangular(low = Min, high = Max))# Round gives us a whole number for a character's age
@@ -1485,6 +1487,9 @@ Alignment = random.choice(Alignment)
 
 SkillExpertises = [item for item, count in collections.Counter(SkillProficiencies).items() if count > 1] # I included this so if you get the same skill proficiency from two different sources, it becomes an expertise (it's pretty darn rare)
 ToolExpertises = [item for item, count in collections.Counter(ToolProficiencies).items() if count > 1] # You can delete these two rows if you don't want innate expertises
+
+
+#print statements
 
 print("Race:", Race)
 if Subrace != "N/A":
