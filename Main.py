@@ -28,8 +28,9 @@ A random character depending on the user's restrictions (if any).
 
 import random
 import collections
-# import Races
+import Races
 import Backgrounds
+import Classes
 
 
 # def Normal(Min, Max): # Not exactly sure how this one is working, but it gives a more realistic result for age, height and weight
@@ -92,12 +93,12 @@ import Backgrounds
 #     if STAT == 20:
 #         return 5
     
-# def RemoveDuplicates(List):
-#     final_list = []
-#     for num in List:
-#         if num not in final_list:
-#             final_list.append(num)
-#     return final_list
+def RemoveDuplicates(List):
+    final_list = []
+    for num in List:
+        if num not in final_list:
+            final_list.append(num)
+    return final_list
 
 # STR = random.randint (1,20)
 # DEX = random.randint (1,20)
@@ -106,16 +107,7 @@ import Backgrounds
 # WIS = random.randint (1,20)
 # CHA = random.randint (1,20)
 
-ArmourProficiencies = []
-WeaponProficiencies = []
-ToolProficiencies = []
-SavingThrowProficiencies = []
-SkillProficiencies = []
-Resistances = []
-Immunities = []
-Vulnerabilities = []
-Traits = []
-Equipment = []
+
 
 # Subrace 
 # Subclass 
@@ -130,14 +122,14 @@ Equipment = []
 # Hair
 # Speed = 0
 
-# Skills = ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
-# ArtisanTools = ["Alchemist's Supplies", "Brewer's Supplies", "Calligrapher's Supplies", "Carpenter's Tools", "Cartographer's Tools", "Cobbler's Tools", "Cook's Utensils", "Glassblower's Tools", "Jeweler's Tools", "Leatherworker's Tools", "Mason's Tools", "Painter's Tools", "Potter's Tools", "Smith's Tools", "Tinker's Tools", "Weaver's Tools", "Woodcarver's Tools"]
-# GamingSets = ["Dice Set", "Dragonchess Set", "Playing Card Set", "Three-Dragon Ante Set"]
-# MusicalInstruments = ["Bagpipes", "Drum", "Dulcimer", "Flute", "Lute", "Lyre", "Horn", "Pan Flute", "Shawm", "Viol"]
-# MartialWeapons = ["Battleaxe", "Flail", "Glaive", "Greataxe", "Greatsword", "Halberd", "Lance", "Longsword", "Maul", "Morningstar", "Pike", "Rapier", "Scimitar", "Shortsword", "Trident", "War Pick", "Warhammer", "Whip", "Blowgun", "Hand Crossbow", "Heavy Crossbow", "Longbow", "Net"]
-# MartialMelee = ["Battleaxe", "Flail", "Glaive", "Greataxe", "Greatsword", "Halberd", "Lance", "Longsword", "Maul", "Morningstar", "Pike", "Rapier", "Scimitar", "Shortsword", "Trident", "War Pick", "Warhammer", "Whip"]
-# SimpleWeapons = ["Club", "Dagger", "Greatclub", "Handaxe", "Javelin", "Light Hammer", "Mace", "Quarterstaff", "Sickle", "Spear", "Light Crossbow", "Dart", "Shortbow", "Sling"]
-# SimpleMelee = ["Club", "Dagger", "Greatclub", "Handaxe", "Javelin", "Light Hammer", "Mace", "Quarterstaff", "Sickle", "Spear"]
+Skills = ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+ArtisanTools = ["Alchemist's Supplies", "Brewer's Supplies", "Calligrapher's Supplies", "Carpenter's Tools", "Cartographer's Tools", "Cobbler's Tools", "Cook's Utensils", "Glassblower's Tools", "Jeweler's Tools", "Leatherworker's Tools", "Mason's Tools", "Painter's Tools", "Potter's Tools", "Smith's Tools", "Tinker's Tools", "Weaver's Tools", "Woodcarver's Tools"]
+GamingSets = ["Dice Set", "Dragonchess Set", "Playing Card Set", "Three-Dragon Ante Set"]
+MusicalInstruments = ["Bagpipes", "Drum", "Dulcimer", "Flute", "Lute", "Lyre", "Horn", "Pan Flute", "Shawm", "Viol"]
+MartialWeapons = ["Battleaxe", "Flail", "Glaive", "Greataxe", "Greatsword", "Halberd", "Lance", "Longsword", "Maul", "Morningstar", "Pike", "Rapier", "Scimitar", "Shortsword", "Trident", "War Pick", "Warhammer", "Whip", "Blowgun", "Hand Crossbow", "Heavy Crossbow", "Longbow", "Net"]
+MartialMelee = ["Battleaxe", "Flail", "Glaive", "Greataxe", "Greatsword", "Halberd", "Lance", "Longsword", "Maul", "Morningstar", "Pike", "Rapier", "Scimitar", "Shortsword", "Trident", "War Pick", "Warhammer", "Whip"]
+SimpleWeapons = ["Club", "Dagger", "Greatclub", "Handaxe", "Javelin", "Light Hammer", "Mace", "Quarterstaff", "Sickle", "Spear", "Light Crossbow", "Dart", "Shortbow", "Sling"]
+SimpleMelee = ["Club", "Dagger", "Greatclub", "Handaxe", "Javelin", "Light Hammer", "Mace", "Quarterstaff", "Sickle", "Spear"]
 
 # # Race list of race objects
 # Race = [Aasimar, Bugbear, Dragonborn, Dryad, Dwarf, Elf, Firbolg, Genasi, Gith, Gnome, Goblin, 
@@ -159,16 +151,19 @@ Equipment = []
 # Class = random.choice(Class)
 # ChosenClass - Class() # Make object instance
 
+Background = Backgrounds.Main().chosenBackground()
 
-# Background = [Acolyte, Anthropologist, Archaeologist, BlackFistDoubleAgent, CaravanSpecialist, Charlatan, 
-# CityWatch, ClanCrafter, CloisteredScholar, Courtier, Criminal, DragonCasualty, EarthspurMiner, 
-# Entertainer, FactionAgent, FarTraveller, FolkHero, GateUrchin, GuildArtisan, Harborfolk, HauntedOne, 
-# Hermit, HillsfarMerchant, HillsfarSmuggler, HouseAgent, Inheritor, Initiate, Inquisitor, IronRouteBandit, 
-# KnightOfTheOrder, MercenaryVeteran, MulmasterAristocrat, Noble, Outlander, PhlanInsurgent, PhlanRefugee, 
-# Sage, Sailor, SecretIdentity, ShadeFanatic, Soldier, StojanowPrisoner, TicklebellyNomad, TradeSheriff, 
-# UrbanBountyHunter, Urchin, UthgardtTribeMember Vizier WaterdhavianNoble]
 
-# Background = random.choice(Background)
+ArmourProficiencies = Backgrounds.ArmourProficiencies
+WeaponProficiencies = Backgrounds.WeaponProficiencies
+ToolProficiencies = Backgrounds.ToolProficiencies
+SavingThrowProficiencies = Backgrounds.SavingThrowProficiencies
+SkillProficiencies = Backgrounds.SkillProficiencies
+Resistances = Backgrounds.Resistances
+Immunities = Backgrounds.Immunities
+Vulnerabilities = Backgrounds.Vulnerabilities
+Traits = Backgrounds.Traits
+Equipment = Backgrounds.Equipment
  
 # Alignment = ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "True Neutral", "Chaotic Neutral", "Lawful Evil", "Neutral Evil", "Chaotic Evil"]
 # Alignment = random.choice(Alignment)
@@ -176,11 +171,7 @@ Equipment = []
 # SkillExpertises = [item for item, count in collections.Counter(SkillProficiencies).items() if count > 1] # I included this so if you get the same skill proficiency from two different sources, it becomes an expertise (it's pretty darn rare)
 # ToolExpertises = [item for item, count in collections.Counter(ToolProficiencies).items() if count > 1] # You can delete these two rows if you don't want innate expertises
 
-# #print statements
-
-# printSummary()
-
-# def printSummary():
+def printSummary():
 #     print("Race:", Race)
 
 #     print("Class:", Class)
@@ -203,32 +194,30 @@ Equipment = []
 
 #     # This can be improved
 
-#     if ArmourProficiencies != []:
-#         print("Armour Proficiencies:", ", ".join(sorted(RemoveDuplicates(ArmourProficiencies))))
-#     if WeaponProficiencies != []:
-#         print("Weapon Proficienceis:", ", ".join(sorted(RemoveDuplicates(WeaponProficiencies))))
-#     if ToolProficiencies != []:
-#         print("Tool Proficiencies:", ", ".join(sorted(RemoveDuplicates(ToolProficiencies))))
-#     if ToolExpertises != []:
-#         print ("Tool Expertises: ", ", ".join(sorted(RemoveDuplicates(ToolExpertises))))
-#     if SavingThrowProficiencies != []:
-#         print("Saving Throw Proficiencies:", ", ".join(sorted(RemoveDuplicates(SavingThrowProficiencies))))
-#     if SkillProficiencies != []:
-#         print("Skill Proficiencies:", ", ".join(sorted(RemoveDuplicates(SkillProficiencies))))
-#     if SkillExpertises != []:
-#         print ("Skill Expertises: ", ", ".join(sorted(RemoveDuplicates(SkillExpertises))))
-#     if Resistances != []:
-#         print("Resistances:", ", ".join(sorted(RemoveDuplicates(Resistances))))
-#     if Immunities != []:
-#         print("Immunities:", ", ".join(sorted(RemoveDuplicates(Immunities))))
-#     if Vulnerabilities != []:
-#         print("Vulnerabilities:", ", ".join(sorted(RemoveDuplicates(Vulnerabilities))))
-#     if Traits != []:
-#         print("Traits:", ", ".join(sorted(RemoveDuplicates(Traits))))
-#     if Equipment != []:
-#         print("Equipment and Weapons:", ", ".join(sorted(RemoveDuplicates(Equipment))))
-
-
+    if ArmourProficiencies is not None:
+        print("Armour Proficiencies:", ", ".join(sorted(RemoveDuplicates(ArmourProficiencies))))
+    if WeaponProficiencies is not None:
+        print("Weapon Proficienceis:", ", ".join(sorted(RemoveDuplicates(WeaponProficiencies))))
+    if ToolProficiencies is not None:
+        print("Tool Proficiencies:", ", ".join(sorted(RemoveDuplicates(ToolProficiencies))))
+    # if ToolExpertises is not None:
+    #     print ("Tool Expertises: ", ", ".join(sorted(RemoveDuplicates(ToolExpertises))))
+    if SavingThrowProficiencies is not None:
+        print("Saving Throw Proficiencies:", ", ".join(sorted(RemoveDuplicates(SavingThrowProficiencies))))
+    if SkillProficiencies is not None:
+        print("Skill Proficiencies:", ", ".join(sorted(RemoveDuplicates(SkillProficiencies))))
+    # if SkillExpertises is not None:
+    #     print ("Skill Expertises: ", ", ".join(sorted(RemoveDuplicates(SkillExpertises))))
+    if Resistances is not None:
+        print("Resistances:", ", ".join(sorted(RemoveDuplicates(Resistances))))
+    if Immunities is not None:
+        print("Immunities:", ", ".join(sorted(RemoveDuplicates(Immunities))))
+    if Vulnerabilities is not None:
+        print("Vulnerabilities:", ", ".join(sorted(RemoveDuplicates(Vulnerabilities))))
+    if Traits is not None:
+        print("Traits:", ", ".join(sorted(RemoveDuplicates(Traits))))
+    if Equipment is not None:
+        print("Equipment and Weapons:", ", ".join(sorted(RemoveDuplicates(Equipment))))
     
 #     print("Age:",Age)
 #     print("Height: ", (Height//12), "' ", Height%12, '"', sep='')
@@ -237,5 +226,4 @@ Equipment = []
 #     print("Skin Colour:", Skin)
 #     print("Hair Colour:", Hair)
 
-ac = Backgrounds.Acolyte()
-print(f"Skills Proficienceis:{SkillProficiencies}")
+printSummary()
